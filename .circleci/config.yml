@@ -1,21 +1,29 @@
 version: 2.1
-# orbs:
-#   node: circleci/node@3.0.0
+orbs:
+  node: circleci/node@3.0.0
 jobs:
-  npm-package-creation:
-    docker: # it runs inside a docker image, the same as above.
-      - image: circleci/node@3.0.0
-        # auth:
-        #   username: mydockerhub-user
-        #   password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+  p10xy-npm-package:
+    # docker:
+    #   - image: 'cimg/base:stable'
+    #     # auth:
+    #     #   username: mydockerhub-user
+    #     #   password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    executor:
+      name: node/default
+    working_directory: agent
     steps:
-      - checkout
-      - attach_workspace:
-        at: agent
+      - checkout:
+          path: ~/project
       - run: |
           ls -las
           pwd
+          npm publish
+
 workflows:
-  node-tests:
+  artefact-createion:
     jobs:
-      - node/test
+      - node/test:
+          app-dir: agent
+      - p10xy-npm-package:
+          requires:
+            - node/test

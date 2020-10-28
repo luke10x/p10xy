@@ -24,5 +24,3 @@ proxy.on('proxyRes', function (proxyRes, req, res) {
     JSON.stringify(proxyRes.headers)
   );
 });
-
- 

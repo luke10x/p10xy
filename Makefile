@@ -39,6 +39,9 @@ test-agent:
 
 test: test-agent
 
+push-agent:
+	docker build
+
 down:
 	docker-compose down
 

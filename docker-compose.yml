@@ -1,0 +1,66 @@
+version: "3.7"
+services:
+  # dashboard:
+  #   image: node:14.8
+  #   volumes:
+  #     - "./shortnr:/mnt/shortnr"
+  #   working_dir: "/mnt/shortnr"
+  #   environment:
+  #     VUE_APP_URLSTORE_URL: ${URLSTORE_URL:-http://localhost:9090/}
+  #   entrypoint: "/bin/bash -c"
+  #   command:
+  #     - |
+  #       npm start || (\
+  #         echo "⛔ \`npm start\` failed, but the container is running..." && \
+  #         tail -f /dev/null \
+  #       )
+  #   ports:
+  #     - 8080:8080
+
+  # hub:
+  #   image: node:14.8
+  #   volumes:
+  #     - "./urlstore:/mnt/urlstore"
+  #   working_dir: "/mnt/urlstore"
+  #   environment:
+  #     DB_URL: ${DB_URL:-mongodb://mongouser:mongopassword@mongo:27017/urlstore}
+  #     SHORTNR_URL: ${SHORTNR_URL:-http://localhost:8080/}
+  #     XLINK_URL: ${XLINK_URL:-http://localhost:7070/}
+  #     PORT: 9090
+  #   entrypoint: "/bin/bash -c"
+  #   command:
+  #     - |
+  #       npm run start:dev || (\
+  #         echo "⛔ \`npm start\` failed, but the container is running..." && \
+  #         tail -f /dev/null \
+  #       )
+  #   ports:
+  #     - 9090:9090
+
+  agent:
+    image: node:14.8
+    volumes:
+      - "./agent:/mnt/agent"
+    working_dir: "/mnt/agent"
+    environment:
+      TARGET_URL: "http://target:80"
+      PORT: 7070
+    entrypoint: "/bin/bash -c"
+    command:
+      - |
+        npm run start:dev || (\
+          echo "⛔ \`npm start\` failed, but the container is running..." && \
+          tail -f /dev/null \
+        )
+    ports:
+      - 7070:7070
+
+  target:
+    image: nginx
+    # volumes:
+    #  - ./templates:/etc/nginx/templates
+    ports:
+     - "8080:80"
+    environment:
+    #  - NGINX_HOST=foobar.com
+     - NGINX_PORT=80

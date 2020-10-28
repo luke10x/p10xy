@@ -1,8 +1,13 @@
 version: 2.1
-orbs:
-  node: circleci/node@3.0.0
+# orbs:
+#   node: circleci/node@3.0.0
 jobs:
   npm-package-creation:
+    docker: # it runs inside a docker image, the same as above.
+      - image: circleci/node@3.0.0
+        # auth:
+        #   username: mydockerhub-user
+        #   password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
       - attach_workspace:

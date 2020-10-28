@@ -14,13 +14,34 @@ jobs:
     steps:
       - checkout:
           path: ~/project
-      - run: |
-          ls -las
-          pwd
-          npm publish
+      - run:
+          name: "Show versions"
+          command: |
+            published_version=$(npm view p10p10p10 version)
+            this_version=$(node -p -e "require('./package.json').version")
+            echo "🌐 latest published version: $published_version"
+            echo "🚧 package version of this build: $this_version"
+            if [ "$published_version" = "$this_version" ]; then
+              echo "🦘 skip NPM Publish, because this version is published"
+              return 127
+            else
+              echo "🐱‍🏍 Update NPM, yes please!"
+            fi
+      - run:
+          when: on_fail
+          name: "Skip publishing"
+          command: |
+            echo "⛔ Stop this job without publishing"
+            circleci-agent step halt
+      - run:
+          name: "Publish"
+          command: |
+            echo "🚀 Publishing NPM package!"
+            echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" > ~/.npmrc
+            npm publish
 
 workflows:
-  artefact-createion:
+  commit:
     jobs:
       - node/test:
           app-dir: agent

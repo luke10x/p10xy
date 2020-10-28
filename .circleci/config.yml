@@ -1,0 +1,16 @@
+version: 2.1
+orbs:
+  node: circleci/node@3.0.0
+jobs:
+  npm-package-creation:
+    steps:
+      - checkout
+      - attach_workspace:
+        at: agent
+      - run: |
+          ls -las
+          pwd
+workflows:
+  node-tests:
+    jobs:
+      - node/test

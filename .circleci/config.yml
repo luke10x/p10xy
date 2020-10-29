@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   node: circleci/node@3.0.0
 jobs:
-  p10xy-npm-package:
+  npm-package:
     # docker:
     #   - image: 'cimg/base:stable'
     #     # auth:
@@ -29,12 +29,29 @@ jobs:
             echo "🚀 Publishing NPM package!"
             echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" > ~/.npmrc
             npm publish
-
+  docker-image:
+    docker:
+        - image: 'cimg/base:stable'
+          # auth:
+          #   username: mydockerhub-user
+          #   password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    working_directory: agent
+    steps:
+      - checkout:
+          path: ~/project
+      - setup_remote_docker
+      - run: |
+          docker ps
+          echo "ok 🎆"
+          docker-compose ps
+          echo "both 🎈psd"
+  
 workflows:
   commit:
     jobs:
-      - node/test:
-          app-dir: agent
-      - p10xy-npm-package:
-          requires:
-            - node/test
+      # - node/test:
+      #     app-dir: agent
+      # - npm-package:
+      #     requires:
+      #       - node/test
+      - docker-image

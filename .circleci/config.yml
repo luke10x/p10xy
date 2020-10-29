@@ -3,11 +3,6 @@ orbs:
   node: circleci/node@3.0.0
 jobs:
   npm-package:
-    # docker:
-    #   - image: 'cimg/base:stable'
-    #     # auth:
-    #     #   username: mydockerhub-user
-    #     #   password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     executor:
       name: node/default
     working_directory: agent
@@ -31,20 +26,18 @@ jobs:
             npm publish
   docker-image:
     docker:
-        - image: 'cimg/base:stable'
-          # auth:
-          #   username: mydockerhub-user
-          #   password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+      - image: 'cimg/base:stable'
     working_directory: agent
     steps:
       - checkout:
           path: ~/project
       - setup_remote_docker
       - run: |
-          docker ps
-          echo "ok 🎆"
-          docker-compose ps
-          echo "both 🎈psd"
+          
+
+          sudo docker build -t luke10x/p10xy .
+          sudo docker tag luke10x/p10xy:${this_version}
+
   
 workflows:
   commit:

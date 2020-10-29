@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "p10xy": "ts-node src/index.ts",
     "build": "tsc",
     "start": "node build/index",
     "test": "jest --env=node",
@@ -15,13 +16,15 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "http-proxy": "^1.18.1"
+    "http-proxy": "^1.18.1",
+    "yargs": "^16.1.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.7",
     "@types/http-proxy": "^1.17.4",
     "@types/jest": "^26.0.9",
     "@types/node": "^14.14.6",
+    "@types/yargs": "^15.0.9",
     "@typescript-eslint/eslint-plugin": "^2.21.0",
     "@typescript-eslint/parser": "^2.21.0",
     "eslint": "^6.8.0",

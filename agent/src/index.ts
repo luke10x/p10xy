@@ -1,7 +1,22 @@
 import express from 'express';
 import http from 'http';
 import httpProxy from 'http-proxy';
+import { parseArgs, showUsage } from './parseArgs';
+import { exit } from 'process';
 
+const command = parseArgs(process.argv.slice(2));
+
+if (command.type === 'version') {
+  console.log(require("../package").version);
+  exit(0);
+}
+
+if (command.type === 'bad-usage') {
+  console.log('USAGE: 🎃');
+  showUsage();
+  exit(1);
+}
+ 
 const app = express();
 
 var proxy = httpProxy.createProxyServer();

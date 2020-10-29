@@ -1,4 +1,4 @@
-FROM node:15 as builder
+FROM node:14.8 as builder
 WORKDIR /mnt/p10xy-agent
 
 COPY package*.json ./
@@ -9,7 +9,7 @@ RUN npm run build
 RUN ls -las src
 RUN ls -las build
 
-FROM node:15 as app
+FROM node:14.8 as app
 WORKDIR /mnt/p10xy-agent
 
 COPY package*.json ./

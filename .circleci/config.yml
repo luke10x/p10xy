@@ -17,13 +17,12 @@ jobs:
       - run:
           name: "Check versions"
           command: |
-            ../pipeline/check-npm-version.sh
-      - run:
-          when: on_fail
-          name: "Skip publishing"
-          command: |
-            echo "⛔ Stop this job without publishing"
-            circleci-agent step halt
+            #!/usr/bin/env bash
+            set +o errexit
+            bash ../pipeline/check-npm-version.sh
+            if [[ $? != 0 ]]; then
+              circleci-agent step halt
+            fi
       - run:
           name: "Publish"
           command: |

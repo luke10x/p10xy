@@ -3,7 +3,7 @@
 set -o nounset
 set -o errexit
 set -o pipefail
-set -o xtrace
+# set -o xtrace
 
 published_version=$(npm view p10p10p10 version)
 this_version=$(node -p -e "require('./package.json').version")

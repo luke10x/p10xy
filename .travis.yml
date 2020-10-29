@@ -1,0 +1,17 @@
+arch:
+  - amd64
+  - arm64
+
+services:
+  - docker
+
+language: 
+  node_js
+
+before_install:
+- ls -las
+- pwd
+- sudo docker build -t luke10x/p10xy .
+
+script:
+- npm test

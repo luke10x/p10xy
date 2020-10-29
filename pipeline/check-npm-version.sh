@@ -14,5 +14,6 @@ if [ "$published_version" = "$this_version" ]; then
     echo "🦘 skip NPM Publish, because this version is published"
     exit 127
 else
-    echo "🐱‍🏍 Update NPM, yes please!"
+
+    echo "👍 Update NPM, yes please!"
 fi

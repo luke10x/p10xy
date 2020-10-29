@@ -12,7 +12,7 @@ echo "🚧 package version of this build: $this_version"
 
 if [ "$published_version" = "$this_version" ]; then
     echo "🦘 skip NPM Publish, because this version is published"
-    exit 1
+    exit 127
 else
     echo "🐱‍🏍 Update NPM, yes please!"
 fi

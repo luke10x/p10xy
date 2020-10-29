@@ -17,7 +17,7 @@ jobs:
       - run:
           name: "Check versions"
           command: |
-            ../pipelines/check-npm-version.sh
+            ../pipeline/check-npm-version.sh
       - run:
           when: on_fail
           name: "Skip publishing"

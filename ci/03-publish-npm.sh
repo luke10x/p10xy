@@ -4,7 +4,7 @@ set -o nounset
 set -o errexit
 set -o pipefail
 
-published_version=$(docker run --rm p10xy-build 'npm view p10p10p10 version')
+published_version=$(docker run --rm p10xy-build 'npm view p10xy version')
 this_version=$(docker run --rm p10xy-build 'npm run p10xy -- --version | tail -1')
 
 echo "🌐 latest published version: $published_version"

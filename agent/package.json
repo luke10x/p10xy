@@ -1,8 +1,11 @@
 {
   "name": "p10xy",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "",
   "main": "index.js",
+  "bin": {
+    "p10xy": "index.js"
+  },
   "scripts": {
     "p10xy": "ts-node src/index.ts",
     "build": "tsc",

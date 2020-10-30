@@ -12,7 +12,7 @@ echo "🚧 current version: $this_version"
 
 if [ "$published_version" = "$this_version" ]; then
     echo "🦘 [ current == published ] skipping..."
-    exit 127
+    exit 0
 else
     echo "👍 [ current != published ] Update NPM, yes please!"
 fi

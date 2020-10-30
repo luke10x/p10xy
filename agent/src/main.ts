@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import express from 'express';
 import http from 'http';
 import httpProxy from 'http-proxy';

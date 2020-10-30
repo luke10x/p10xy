@@ -8,12 +8,7 @@ services:
 language: 
   minimal
 
-before_install:
-- ls -las
-- pwd
+script:
 - (cd agent && ../ci/01-build.sh)                                         
 - (cd agent && ../ci/02-test.sh)                                         
 - (cd agent && ../ci/03-publish-npm.sh)
-
-script:
-- npm test

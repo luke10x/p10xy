@@ -19,8 +19,6 @@ fi
 
 echo "🚀 Publishing NPM package!"
 
-NPM_AUTH_TOKEN=gucci
-
 container=$( \
   docker create \
     --env NPM_AUTH_TOKEN=$NPM_AUTH_TOKEN \

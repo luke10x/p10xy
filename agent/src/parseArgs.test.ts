@@ -10,6 +10,6 @@ describe('when called with nothing', () => {
 describe('when called with --version', () => {
     it('creates version command', () => {
         const command = parseArgs(['--version']);
-        expect(command.type).toEqual('version');
+        expect(command.type).toEqual('version dddss');
     });
 });

@@ -1,17 +1,19 @@
 arch:
-  # - amd64
-  - arm64
+#- amd64
+- arm64
 
 services:
-  - docker
+- docker
 
-# language: 
-#   node_js
+language: 
+  minimal
 
 before_install:
 - ls -las
 - pwd
-- sudo docker build -t luke10x/p10xy ./agent
+- (cd agent && ../ci/01-build.sh)                                         
+- (cd agent && ../ci/02-test.sh)                                         
+- (cd agent && ../ci/03-publish-npm.sh)                                         
 
 script:
 - npm test

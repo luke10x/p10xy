@@ -35,7 +35,7 @@ lint-agent:
 lint: lint-agent
 
 test-agent:
-	docker-compose run --rm agent "npm run test:unit -- --verbose"
+	docker-compose run --rm agent "npm test -- --verbose"
 
 test: test-agent
 

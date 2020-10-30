@@ -14,7 +14,7 @@ jobs:
           command: |
             #!/usr/bin/env bash
             set +o errexit
-            bash ../pipeline/check-npm-version.sh
+            bash ../ci/tools/check-npm-version.sh
             if [[ $? != 0 ]]; then
               circleci-agent step halt
             fi

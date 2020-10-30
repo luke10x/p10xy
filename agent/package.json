@@ -1,18 +1,18 @@
 {
   "name": "p10xy",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "",
-  "main": "index.js",
+  "main": "build/main.js",
   "bin": {
-    "p10xy": "index.js"
+    "p10xy": "build/main.js"
   },
   "scripts": {
-    "p10xy": "ts-node src/index.ts",
+    "p10xy": "ts-node src/main.ts",
     "build": "tsc",
-    "start": "node build/index",
+    "start": "node build/main",
     "test": "jest --env=node",
     "lint": "eslint '*/**/*.{js,ts}' --quiet --fix",
-    "start:dev": "nodemon --watch src --exec ts-node src/index.ts"
+    "start:dev": "nodemon --watch src --exec ts-node src/main.ts"
   },
   "keywords": [],
   "author": "",

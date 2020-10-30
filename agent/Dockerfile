@@ -26,4 +26,4 @@ COPY --from=builder /mnt/p10xy-agent/build .
 USER node
 
 EXPOSE 8080
-ENTRYPOINT ["/usr/local/bin/node", "/mnt/p10xy-agent/index.js"]
+ENTRYPOINT ["/usr/local/bin/node", "/mnt/p10xy-agent/main.js"]

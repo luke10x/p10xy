@@ -1,10 +1,10 @@
 {
   "name": "p10xy",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "",
   "main": "build/main.js",
   "bin": {
-    "p10xy": "build/main.js"
+    "p10xy": ".bin/p10xy.js"
   },
   "scripts": {
     "p10xy": "ts-node src/main.ts",

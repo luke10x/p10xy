@@ -1,6 +1,6 @@
 {
   "name": "p10xy",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "",
   "main": "build/main.js",
   "bin": {

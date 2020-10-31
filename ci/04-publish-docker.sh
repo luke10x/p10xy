@@ -21,12 +21,13 @@ else
 fi
 
 echo "🔖 tag v${this_version}"
-docker tag p10xy:latest p10xy:$this_version
+docker tag p10xy:latest luke10x/p10xy:$this_version
+docker tag p10xy:latest luke10x/p10xy:latest
 
 echo "🔒 authenticatind to Dockerhub"
 echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
 
 echo "🐋 pushing Docker images"
-docker push p10xy:latest
-docker push p10xy:${this_version}
+docker push luke10x/p10xy:${this_version}
+docker push luke10x/p10xy:latest
 echo "🐳 images pushed to Dockerhub"

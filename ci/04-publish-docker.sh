@@ -9,7 +9,7 @@ function docker_tag_exists() {
     # curl --silent -f -lSL https://index.docker.io/v1/repositories/$1/tags/$2 > /dev/null
 }
 
-this_version=$(docker run -it p10xy --version | sed 's/\r//g')
+this_version=$(docker run --rm p10xy '--version' | sed 's/\r//g')
 
 echo "🚧 current version: $this_version"
 

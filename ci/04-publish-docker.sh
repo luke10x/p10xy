@@ -5,12 +5,14 @@ set -o errexit
 set -o pipefail
 
 function docker_tag_exists() {
-   docker pull $1:$2 > /dev/null 
+    arch=$(dpkg --print-architecture)
+    echo "💻 architecture: $arch"
+    DOCKER_API_VERSION=1.32 DOCKER_CLI_EXPERIMENTAL=enabled docker pull \
+        --platform=linux/$arch $1:$2 #> /dev/null 
     # curl --silent -f -lSL https://index.docker.io/v1/repositories/$1/tags/$2 > /dev/null
 }
 
 this_version=$(docker run --rm p10xy '--version' | sed 's/\r//g')
-
 echo "🚧 current version: $this_version"
 
 if docker_tag_exists luke10x/p10xy $this_version; then

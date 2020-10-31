@@ -1,41 +1,19 @@
 version: "3.7"
 services:
-  # dashboard:
-  #   image: node:14.8
-  #   volumes:
-  #     - "./shortnr:/mnt/shortnr"
-  #   working_dir: "/mnt/shortnr"
-  #   environment:
-  #     VUE_APP_URLSTORE_URL: ${URLSTORE_URL:-http://localhost:9090/}
-  #   entrypoint: "/bin/bash -c"
-  #   command:
-  #     - |
-  #       npm start || (\
-  #         echo "⛔ \`npm start\` failed, but the container is running..." && \
-  #         tail -f /dev/null \
-  #       )
-  #   ports:
-  #     - 8080:8080
-
-  # hub:
-  #   image: node:14.8
-  #   volumes:
-  #     - "./urlstore:/mnt/urlstore"
-  #   working_dir: "/mnt/urlstore"
-  #   environment:
-  #     DB_URL: ${DB_URL:-mongodb://mongouser:mongopassword@mongo:27017/urlstore}
-  #     SHORTNR_URL: ${SHORTNR_URL:-http://localhost:8080/}
-  #     XLINK_URL: ${XLINK_URL:-http://localhost:7070/}
-  #     PORT: 9090
-  #   entrypoint: "/bin/bash -c"
-  #   command:
-  #     - |
-  #       npm run start:dev || (\
-  #         echo "⛔ \`npm start\` failed, but the container is running..." && \
-  #         tail -f /dev/null \
-  #       )
-  #   ports:
-  #     - 9090:9090
+  webapp:
+    image: node:14.8
+    volumes:
+      - "./webapp:/mnt/webapp"
+    working_dir: "/mnt/webapp"
+    entrypoint: "/bin/bash -c"
+    command:
+      - |
+        CI=true npm start || (\
+          echo "⛔ \`npm start\` failed, but the container is running..." && \
+          tail -f /dev/null \
+        )
+    ports:
+      - 3000:3000
 
   agent:
     image: node:14.8

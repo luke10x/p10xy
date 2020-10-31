@@ -5,7 +5,8 @@ set -o errexit
 set -o pipefail
 
 function docker_tag_exists() {
-    curl --silent -f -lSL https://index.docker.io/v1/repositories/$1/tags/$2 > /dev/null
+   docker pull $1:$2 > /dev/null 
+    # curl --silent -f -lSL https://index.docker.io/v1/repositories/$1/tags/$2 > /dev/null
 }
 
 this_version=$(docker run -it p10xy --version | sed 's/\r//g')

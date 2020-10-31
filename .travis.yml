@@ -4,12 +4,6 @@ arch:
 
 language: minimal
 services: docker
-install: sudo apt-get -y install jq sed curl
-
-before_script:
-- mkdir $HOME/.docker/
-- echo '{"experimental":"enabled"}' | sudo tee $HOME/.docker/config.json
-# - cat <<< $(jq '.+{"experimental":"enabled"}' ~/.docker/config.json) > ~/.docker/config.json
 
 script:
 - (cd agent && ../ci/01-build.sh)                                         

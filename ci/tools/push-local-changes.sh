@@ -6,6 +6,8 @@ set -o pipefail
 
 # Setup key
 # ATM only keys WITHOUT PASSPHRASE are supported!
+# this key has to be encoded while calling like:
+# WEBAPP_DEPLOY_KEY=$(base64 --wrap=0 ~/.ssh/p10xy.luke10x.dev) ../ci/05-publish-static.sh
 mkdir ~/.ssh
 chmod 0700 ~/.ssh
 ssh-keyscan github.com > ~/.ssh/known_hosts

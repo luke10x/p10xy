@@ -6,9 +6,10 @@ set -o pipefail
 
 docker build -t webapp .
 
+DECODED_WEBAPP_DEPLOY_KEY=$(echo "$WEBAPP_DEPLOY_KEY" | base64 --decode --ignore-garbage)
 container=$( \
   docker create \
-    --env WEBAPP_DEPLOY_KEY="$WEBAPP_DEPLOY_KEY" \
+    --env WEBAPP_DEPLOY_KEY="$DECODED_WEBAPP_DEPLOY_KEY" \
     webapp '/ci-tools/push-local-changes.sh' \
 )
 echo "🐳 GIT container created"

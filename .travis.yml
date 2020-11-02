@@ -10,3 +10,4 @@ script:
 - (cd agent && ../ci/02-test.sh)                                         
 - (cd agent && ../ci/03-publish-npm.sh)
 - (cd agent && ../ci/04-publish-docker.sh)
+- (cd webapp && ../ci/05-publish-static.sh)
